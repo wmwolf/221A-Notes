@@ -1,0 +1,10 @@
+\contentsline {section}{\numberline {1}Foundations of Quantum Field Theory}{3}{section.1}
+\contentsline {subsection}{\numberline {1.1}Requirements for QFT}{3}{subsection.1.1}
+\contentsline {subsubsection}{\numberline {1.1.1}Quantum Mechanics}{3}{subsubsection.1.1.1}
+\contentsline {paragraph}{Hilbert Space}{3}{section*.2}
+\contentsline {paragraph}{States and Observables}{4}{section*.3}
+\contentsline {paragraph}{Time Evolution}{4}{section*.4}
+\contentsline {paragraph}{Further Requirements}{4}{section*.5}
+\contentsline {subsubsection}{\numberline {1.1.2}Non-Relativistic Quantum Mechanics of One Particle in One Dimension}{4}{subsubsection.1.1.2}
+\contentsline {subsubsection}{\numberline {1.1.3}Special Relativity and the Position and Time Operators}{5}{subsubsection.1.1.3}
+\contentsline {subsection}{\numberline {1.2}The Hilbert Space}{5}{subsection.1.2}

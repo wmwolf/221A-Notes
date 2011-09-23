@@ -1,0 +1,105 @@
+\documentclass[10pt]{article}
+
+%%%%%%%%%%%%%%%%%%%%%
+% Package Inclusion %
+%%%%%%%%%%%%%%%%%%%%%
+\usepackage{geometry,amsmath,amsthm,mathrsfs,amssymb,graphicx,bm,hyperref,url}
+
+%%%%%%%%%%%%%%%%%%%
+% Custom Commands %
+%%%%%%%%%%%%%%%%%%%
+\newcommand{\n}{\noindent}
+\newcommand{\ket}[1]{\left|#1\right>}
+\newcommand{\bra}[1]{\left<#1\right|}
+\newcommand{\ip}[2]{\left<#1|#2\right>}
+\newcommand{\norm}[1]{\left|#1\right|}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Title Page Information %
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Notes for PHYS 221A: Relativistic Quantum Field Theory}
+\author{Bill Wolf}
+\date{\today}
+
+\begin{document}
+
+\vfill\maketitle\vfill \newpage
+
+\tableofcontents \newpage
+
+%%%%%%%%%%%%%%%%%%%%%%
+% September 22, 2011 %
+%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Foundations of Quantum Field Theory}
+	\emph{September 22, 2011}
+	\subsection{Requirements for QFT}
+	Relativistic Quantum Field Theory aims to create a mathematical formalism to describe the mechanics of elementary particles in the relativistic regime. To create such a theory, we seek some particular ingredients:
+	\begin{itemize}
+		\item Quantum Mechanics
+		\item Special Relativity
+		\item Particles must be able to appear and disappear
+	\end{itemize}
+	\subsubsection{Quantum Mechanics}
+	\paragraph{Hilbert Space} By ``Quantum Mechanics,'' we mean a mathematical formalism involving operators acting on a Hilbert Space. Here we understand a vector as a thing that can be added to another thing and also multiplied by a number (member of a mathematical field). Here the field in question is the complex number, so we say our vector space is a vector space \emph{over the complex numbers}. Using Dirac bra-ket notation, we will denote a vector thusly: $\ket{\psi}$.\\
+	
+	\n That is, a linear combination of such vector may look like, for $c_1,\,c_2\in\mathbb{C}$, $\ket{\psi_1},\,\ket{\psi_2}$,
+	$$c_1\ket{\psi_1}+c_2\ket{\psi_2}$$
+	Also central to our understanding of a Hilbert space is the inner product, which in math lingo is a positive, semidefinite bilinear form. That is, binary operator (two arguments) that takes two vectors into a classical number (here on out, c number). Useful in this field also is the concept of a dual vector space. Consider first the class of functions that satisfy
+	$$f\left(\ket{\psi}\right) = f\left(c_1\ket{\psi_1}+c_2\ket{\psi_2}\right) = c_1 f\left(\ket{\psi_1}\right)+c_2 f\left(\ket{\psi_2}\right)$$ 
+	In this case we choose to right $f(\ket{\psi})$ as $\ip{f}{\psi}$. The Hermitian conjugate operator then maps kets (vectors) into bras (dual vectors):
+	$$\bra{\psi} = \ket{\psi}^\dag$$
+	and more generally
+	$$\left(c_1\ket{\psi_1}+c_2\ket{\psi_2}\right)^\dag = c_1^*\bra{\psi_1}+c_2^*\bra{\psi_2}$$
+	And then the inner product of two vectors is thus shown as
+	$$\ip{\psi_1}{\psi_2}$$
+	\paragraph{States and Observables} An \textbf{observable} is some property of a system that can actually be measured by experiment. Examples may include the position of a particle or the energy of a system. In quantum mechanics, we associate observables with Hermitian operators. If the observables are hermitian operators, then we define the ``vectors'' to be the possible ``states'' of the system. This notion is understandably vague and is more or less taken on faith.
+	
+	\n We link the vectors and the observables by requiring the possible measured values of an observable to be its eigenvalues. If we have an operator, $\hat{A}$, then for some eigenstates, $\ket{i}$ we have
+	$$\hat{A}\ket{i} = a_i\ket{i}$$
+	where $a_i$ is an eigenvalue of $\hat{A}$. Then the probability of measuring $a_i$ in a measurement is
+	$$P_i = \frac{\norm{\ip{i}{\psi}}^2}{\sqrt{\ip{i}{i}\ip{\psi}{\psi}}}$$
+	\paragraph{Time Evolution} We now turn to the concept of time evolution in quantum mechanics. As it turns out, time is not an observable in quantum mechanics as it is currently understood. We label a state at some time $t$ as $\ket{\psi, t}$ or $\ket{\psi(t)}$. States of a system obey the Shr\"{o}dinger equation:
+	\begin{equation} \label{Schro1} i\hbar \frac{d}{dt}\ket{\psi,t} = \hat{H}\ket{\psi,t}\end{equation}
+	If the hamiltonian, $\hat{H}$ is independent of time, then this equation has the form
+	\begin{equation} \label{Schro2} \ket{\psi,t} = e^{-i\hat{H}t/\hbar}\ket{\psi,0}\end{equation}
+	Sometimes we denote the exponential operator as $U(t) = e^{-i\hat{H}t/\hbar}$ since it is unitary ($U^\dag = U^{-1}$).
+	\paragraph{Further Requirements} To fully define the quantum mechanics for a system, we must come up with a scheme to associate operators and their Hilbert Space with observables (ex. canonical quantization). Additionally a correspondence between physical descriptions and vectors should be provided (tied with defining the Hilbert space). Yet another features of quantum mechanics (or at least measurement theory) is the collapse of the wave function: immediately after a measurement of some observable $\hat{A}$ yields $a_i$, the state of the system is $\ket{i}$.
+	\subsubsection{Non-Relativistic Quantum Mechanics of One Particle in One Dimension}
+	When first studying quantum mechanics, students often learn the theory of NRQMOPOD, which usually involves a Hamiltonian of the form
+	\begin{equation} \label{NRQMOPODHam} \hat{H} = \frac{\hat{P}^2}{2m}+V(\hat{X})\end{equation}
+	where we have position eigenstates
+	$$\hat{X}\ket{x} = x\ket{x}$$
+	and momentum eigenstates
+	$$\hat{P}\ket{p} = p\ket{p}$$
+	and the position-space wave function is defined to be
+	$$\psi(x) = \ip{x}{\psi}$$
+	Then \eqref{Schro1} in the position basis tells us that
+	$$i\hbar \frac{\partial}{\partial t} \psi(x,t) = -\frac{\hbar^2}{2m}\frac{d^2}{dx^2}\psi(x,t)+V(x)\psi(x,t)$$
+		As it turns out, having a position operator is \emph{bad} for relativistic quantum mechanics. First, though, we return to special relativity
+	\subsubsection{Special Relativity and the Position and Time Operators}
+	First recall the classic special relativity transformations:
+	\begin{equation}\label{trans1} x' = \gamma(x-vt) \end{equation}
+	\begin{equation}\label{trans2} t' = \gamma(t-vx/c^2) \end{equation}
+	In \eqref{trans1}, we may promote $x$ to a position operator, but this causes a problem in \eqref{trans2} since time would have an operator in the definition. There are two possible solutions to this problem
+	\begin{itemize}
+		\item Demote position from an operator
+		\item Promote time to an operator
+	\end{itemize}
+	As it turns out, both options are viable and end up describing the same physics. The former is easier to do, though the latter is actually the foundation of string theory and will thus not be mentioned further.
+	\subsection{The Hilbert Space} 
+	We propose a Hilbert space composed of a variable amount of harmonic oscillators. We define canonical commutation relations
+	\begin{equation}\label{ccrs1} \left[\hat{a}_i,\hat{a}^\dag_j\right]=\delta_{ij} \qquad \left[\hat{a}_i, \hat{a}_j\right] = 0\end{equation}
+	We also define a ground state of no harmonic oscillators which is annihilated by any of the $\hat{a}_i$'s:
+	\begin{equation}\label{ground1} \hat{a}_i\ket{0} = 0,\qquad i=1,\ldots,N\end{equation}
+	and a hamiltonian
+	\begin{equation}\label{ham1} \hat{H} = \sum_{i,j=1}^N \Omega_{ij}\hat{a}^\dag_i\hat{a}_j\end{equation}
+	with $\hat{H}\ket{0} = 0$. The continuous generalization of this idea gives us
+	\begin{equation}\label{ccrs2} \left[\hat{a}(x), \hat{a}^\dag(y)\right] = \delta(x-y)\end{equation}
+	and corresponding hamiltonian
+	\begin{equation}\label{ham2} \hat{H} = \int_{-\infty}^\infty dx\,\hat{a}^\dag \left[-\frac{\hbar^2}{2m} \frac{d^2}{dx^2} + V(x)\right]\hat{a}(x)\end{equation}
+	We claim that a given state is represented by
+	\begin{equation} \label{state} \ket{\psi,t} = \int_{-\infty}^\infty dx\,\psi(x,t)\hat{a}^\dag(x)\ket{0}\end{equation}
+	which then satisfies \eqref{Schro1}, giving us the same physics as NRQMOPOD for $\psi(x,t)$.
+\end{document}
