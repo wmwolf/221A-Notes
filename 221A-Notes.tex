@@ -13,6 +13,7 @@
 \newcommand{\bra}[1]{\left<#1\right|}
 \newcommand{\ip}[2]{\left<#1|#2\right>}
 \newcommand{\norm}[1]{\left|#1\right|}
+\newcommand{\comm}[2]{\left[#1,#2\right]}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 % Title Page Information %
@@ -33,7 +34,7 @@
 %%%%%%%%%%%%%%%%%%%%%%
 
 \section{Foundations of Quantum Field Theory}
-	\emph{September 22, 2011}
+	\emph{Thursday, September 22, 2011}
 	\subsection{Requirements for QFT}
 	Relativistic Quantum Field Theory aims to create a mathematical formalism to describe the mechanics of elementary particles in the relativistic regime. To create such a theory, we seek some particular ingredients:
 	\begin{itemize}
@@ -101,5 +102,62 @@
 	\begin{equation}\label{ham2} \hat{H} = \int_{-\infty}^\infty dx\,\hat{a}^\dag \left[-\frac{\hbar^2}{2m} \frac{d^2}{dx^2} + V(x)\right]\hat{a}(x)\end{equation}
 	We claim that a given state is represented by
 	\begin{equation} \label{state} \ket{\psi,t} = \int_{-\infty}^\infty dx\,\psi(x,t)\hat{a}^\dag(x)\ket{0}\end{equation}
-	which then satisfies \eqref{Schro1}, giving us the same physics as NRQMOPOD for $\psi(x,t)$.
+	which then satisfies \eqref{Schro1}, giving us the same physics as NRQMOPOD for $\psi(x,t)$.\\
+	
+	\n\emph{Tuesday, September 27, 2011}
+	\subsubsection{Second Quantization}
+	Using the machinery of the field operators, a pair interaction potential system with uniform potential $U$ has the Hamiltonian
+	\begin{equation} \label{secondquant1} H=\int dx\, a^\dag(x)\left[-\frac{\hbar^2}{2m}\frac{d}{dx^2}-U(x)\right]a(x)+\int dx_1\,dx_2\, V(x_1-x_2)a^\dag(x_1)a^\dag(x_2)a(x_2)a(x_1)\end{equation}
+	with state kets given by
+	\begin{equation}\label{secondquant2} \ket{\psi,t} =\int dx_1\ldots dx_n\,\psi(x_1,\ldots,x_n)a^\dag(x)\ldots a^\dag(x_n)\ket{0}\end{equation}
+	Then the time-dependent Schr\"dingier equation is obeyed:
+	\begin{equation} \label{secondquant3} i\hbar \frac{\partial}{\partial t}\ket{\psi,t}=H\ket{\psi,t}\end{equation}
+	Here, $\ket{0}$ is the \textbf{vacuum state}, where $a(x)\ket{0}=0$ for all $x$. Additionally, $a^\dag(x)\ket{0}$ is the state with one particle located at position $x$.
+	\subsubsection{The Heisenberg Picture}
+	In the Heisenberg picture, state kets are independent of time, but operators change in time according to
+	\begin{equation}\label{heisenberg1} A(t)=e^{iHt/\hbar}Ae^{-iHt/\hbar} \Rightarrow a^\dag(x,t)=e^{iHt/\hbar}A(x)e^{-iHt/\hbar}\end{equation}
+	This time dependence replaces the old time dependence of the state kets int he Schr\"dingier picture
+	\begin{equation} \label{heisenberg2}\ket{\psi,t}=e^{-i Ht/\hbar}\ket{\psi}\end{equation}
+	The analogue of the Schr\"odingier equation is then the \textbf{Heisenberg Equation}:
+	\begin{equation}\label{heisenberg}i\hbar \frac{\partial A}{\partial t}=\comm{A}{H}\end{equation}
+	\subsection{Incorporating Special Relativity}
+	Consider a real (i.e., classical) scalar field, $\phi(x)$ (here $x$ is short for $x^\mu$). We require this field to be \textbf{Lorentz Invariant}. That is, if $\bar{x}=\Lambda x$, and $\bar{\phi}=\Lambda \phi$, then $\phi(x)=\bar{\phi}(\bar{x})$. We also need an equation to govern the behavior of $\phi(x)$ that must also be Lorentz Invariant. We thus define
+	\begin{equation}\label{sr1} \partial_\mu=\frac{\partial}{\partial x^\mu}\end{equation}
+	so that
+	\begin{equation}\label{sr2} \partial_\mu x^\nu = \delta_\mu^\nu\end{equation}
+	and
+	\begin{equation} \label{sr3} \partial_\mu x_\nu = g_{\mu\nu}\end{equation}
+	Also, we will use
+	\begin{equation} \label{sr4} \square = \partial^2 = \partial^\mu\partial_\mu = g^{\mu\nu}\partial_\mu\partial_\nu = \nabla^2-\frac{1}{c^2}\frac{\partial^2}{dt^2}\end{equation}
+	This is often referred to as the \textbf{D'Alembertian} operator, and is Lorentz invariant.\\
+	
+	\n A nice equation for $\phi$ that is Lorentz invariant is the \textbf{Klein-Gordon Equation}:
+	\begin{equation} \label{sr5} \boxed{(-\partial^2+m^2)\phi = 0}\end{equation}
+	where $m$ is an arbitrary parameter with dimensions of inverse length. A non-linear generalization of \eqref{sr5} is 
+	\begin{equation} \label{sr6} (-\partial^2 + m^2)\phi - \frac{1}{2}g\phi^2 = 0\end{equation}
+	which is also Lorentz invariant. There are many possible equations that would work to define $\phi$ properly.
+	\subsubsection{Lagrangian Mechanics} For generalized coordinates $q_i$, the lagrangian is $L(q,\dot{x})$. The \textbf{action} is given by
+	\begin{equation}\label{lm1} S=\int_{-\infty}^\infty dt\,L(q_i,\dot{q}_i)\end{equation}
+	Of great use is the \textbf{variational principle} we vary a generalized coordinate and its derivative:
+	\begin{equation} \label{lm2} q(t)\to  q(t)+\delta q(t),\qquad S\to S+\delta S\end{equation}
+	Requiring $\delta S\to 0$ yields the equations of motion for $q$. In field theory, this is much the same, but we use a \textbf{Lagrangian Density} instead of the regular Lagrangian:
+	\begin{equation}\label{lm3} \mathcal{L}=-\frac{1}{2} \partial_\mu \phi \partial^\mu \phi - \frac{1}{2} m^2\phi^2+\frac{1}{6} g \phi^3\end{equation}
+	So then the overall Lagrangian and action are
+	\begin{equation}\label{lm4} L=\int d^3x\,\mathcal{L},\qquad S=\int dt\,L=\int dt\,d^3x\,\mathcal{L}=\int d^4x\,\mathcal{L}\end{equation}
+	Now we vary $\phi(x)$ (the \emph{function} now, not just $x$). That is, 
+	\begin{equation}\label{lm5} \phi\to \phi+\delta\phi\end{equation}
+	We get
+	\begin{align} 
+		\nonumber\delta S &= \int d^4x\left[-\frac{1}{2}\partial_\mu \delta\phi \partial^\mu \phi - \frac{1}{2}\partial_\mu\phi \partial^\mu\delta\phi - \frac{1}{2} m^2(\delta \phi \phi+\phi\delta\phi)+\ldots\right]\\
+		&= -\int d^4x\left[-\partial^2\phi+m^2\phi-\frac{1}{2}g\phi^2\right]\delta\phi\label{lm6} 	
+	\end{align}
+	Setting $\delta S=0$ yields the equation of motion
+	\begin{equation}
+		\label{lm7} -\partial^2\phi + m^2\phi-\frac{1}{2} g\phi^2\right]=0
+	\end{equation}
+	which is exactly the generalized Klein-Gordon equation we invented earlier.
+	
+	
+	
+	
 \end{document}
